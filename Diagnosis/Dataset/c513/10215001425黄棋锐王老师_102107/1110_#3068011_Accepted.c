@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#define max 1000
+
+int main() 
+{ 	char s[100]={'\0'};
+	scanf("%s",s);
+	int p=0;//记录数值 
+	int cx=0;//记录未知数系数
+	int flag=1;//判断系数在等号左边还是右边
+	int fl=-1; //判断数值在等号左边还是右边
+	char goal;
+	int i=0,l=strlen(s),j=0,k=0; 
+do
+ { 	char xi[100]={'\0'};
+ 	int sign=1;//记录符号
+ 	
+ 	if(s[i]=='+') sign=1,i++;
+ 	else if(s[i]=='-') sign=-1,i++;//处理符号，可有可无，'+','-',或无符号 
+ 	
+ 	
+ 	j=0;
+ 	for(;i<l&&'0'<=s[i]&&s[i]<='9';i++) xi[j++]=s[i];//记录数值 
+	int val=1;
+	if(strlen(xi)>0) val=atoi(xi);
+	
+ 	if('a'<=s[i]&&s[i]<='z') goal=s[i++],cx+=val*sign*flag;//未知数系数
+ 	else p+=val*sign*fl;
+	
+ 	if(s[i]=='=') i++,flag=-1,fl=1;//等号左右两边符号不同 
+ }while(i<l);
+ 
+	double x=(double)p/(double)cx;
+	printf("%c=%.3lf",goal,x);
+	
+    return 0;
+}

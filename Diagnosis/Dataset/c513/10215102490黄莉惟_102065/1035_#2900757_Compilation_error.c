@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include<string.h>
+typedef struct {
+    int r[1000];
+    int h[1000];
+} SELECT;
+
+long long comp(int *s1,int *s2){
+    SELECT v1=*(SELECT*)s1;
+    SELECT v2=*(SELECT*)s2;
+    int sum1,sum2;
+    sum1=2*(v1.r)*(v1.r)+2*(v1.r)*(v1.h);
+    sum2=2*(v2.r)*(v2.r)+2*(v2.r)*(v2.h);
+    if(sum1==sum2){
+        return v1.r< v2.r ?-1:1;
+    }else{
+        return sum2-sum1;
+    }
+    
+    
+}
+
+/********** Specification of Input **********/
+void Input(SELECT a[],int n)
+{ 
+   int i=0;
+   while(n>0){
+      int num;
+      scanf("%d %d",&a[i].r,&a[i].h); 
+      i++;
+      n--;
+       
+    }
+    
+    
+}
+
+/********** Specification of Sort **********/
+void Sort(WORD *ps, int n)
+{ 
+    qsort(ps,n,sizeof(ps[0]),comp);
+}
+
+#include <stdio.h>
+#define N 100000
+
+int main() {
+    int i,n,t,j;
+    scanf("%d %d",&n,&m);
+    SELECT a[n];
+    Input(a,n);
+    Sort(a, n);
+    for (i = 0; i < n; i++)
+        printf("%d %d\n", a[i].r, a[i].h);
+    return 0;
+
+    
+}  

@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+int cmp(const void*a,const void*b)
+{
+long long int p=*(long long int*)a;
+long long int q=*(long long int*)b;
+	int i,j,k;
+	j=k=0;
+	for(i=63;i>=0;i++)
+	{
+		if(p>>i&1==1)j++;
+		if(q>>i&1==1)k++;
+	}
+	if(j!=k)return k-j;
+	else return p-q;	
+} 
+int main()
+{
+	int a[10000],t,i,n,j;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%d",&n);
+		for(j=0;j<n;j++)
+			scanf("%d",a[j]);
+		qsort(a,n,sizeof(a[0]),cmp);
+		printf("case #%d:\n",i);
+		for(j=0;j<n;j++)
+			printf("%d ",a[j]);
+		printf("\n");
+	}
+	return 0;
+}

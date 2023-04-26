@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[10001],t[10001];
+    int k=0,sum,i,j,len;
+
+    scanf("%s",s);
+    len= strlen(s);
+    for(i=0;i<len;i++)
+    {
+        if(s[i]>='a' && s[i]<='z')
+        {
+            t[k++]=s[i];
+            t[k]='\0';
+        }
+        else
+        {
+            sum=0;
+            while(s[i]>='0' && s[i]<='9') {
+                sum += sum * 10 + s[i++] - '0';
+            }
+            for(j=1;j<=sum;j++)
+            {
+                printf("%s",t);
+            }
+            k=0;
+            i-=1;
+        }
+    }
+    if(k!=0)
+        printf("%s",t);
+    printf("\n");
+    return 0;
+}

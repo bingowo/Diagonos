@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define ll long long
+
+ll arr[128] = {0};
+char s[100];
+ll i = 0;
+
+ll func(){
+    ll res = 0, temp = 0;
+    while (i < strlen(s)){
+        if (i == strlen(s)-1) {
+            //处理最后一位
+            if (s[i] != ')') res += arr[s[i]];
+            break;
+        }
+        ll l = arr[s[i]], r = arr[s[i+1]];
+        if (temp != 0) {
+            l = temp;
+            temp = 0;
+        }
+        if (s[i+1] == '('){
+            i += 2;
+            ll bei = 1000;
+            if (s[i-2] == '(') bei = 1000000;
+            temp = bei*func();
+            if (l < temp) res -= l;
+            else res += l;
+        }
+        else if (s[i] == ')'){
+            while (s[i] == ')') i++;
+            break;
+        }
+        else if (l < r) {
+            res -= l;
+            i++;
+        }
+        else if (l >= r){
+            res += l;
+            i++;
+        }        
+    } 
+    if (temp != 0) res += temp;
+    return res;
+}
+
+int main(){
+    arr['I']=1,arr['V']=5,arr['X']=10,arr['L']=50,arr['C']=100,arr['D']=500,arr['M']=1000;
+    gets(s);
+    ll res = func();
+    printf("%d\n", res);
+    return 0;
+}

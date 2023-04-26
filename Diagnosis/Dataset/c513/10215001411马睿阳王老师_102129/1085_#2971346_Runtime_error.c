@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main()
+{char a[100]={0},b[100]={0},c[100]={0},d[1000],x=0,i,j,k,t,l,c1,c2,r,q,p;
+ while(scanf("%s",a)!=EOF&&scanf("%s",b)!=EOF)
+  {
+   c1=strlen(a);
+   c2=strlen(b);
+    if(c1<c2) {*a=*b;}
+    else if(c1=c2)
+          {for(i=0;i<c1;i++)
+              {if(a[i]>=b[i]) continue;
+               else break;
+              }
+           if(i=c1-1) ;
+           else {*a=*b;}
+          }
+
+    for(i=0;i<=c1/2;i++)
+          {a[i]=a[c1-i]-'0';}
+    for(j=0;j<=c2/2;j++)
+           {b[j]=b[c2-j]-'0';}
+    for(j=c2;j<c1;j++)
+            b[j]=0;
+    for(l=0;l<c1;l++)
+       {c[l]=a[l]-b[l]-x;
+        if(c[l]<0)
+            {x=1;
+             c[l]+=10;
+            }
+        else x=0;
+       }
+    while(c[l]!=0)
+        {l--;}
+    l++;
+    for(p=0,q=c1-1;q>=l;q--,p++)
+        d[p]=c[q];
+    for(p=0;p<c1-1-l;p++)
+        printf("%d",d[p]);
+
+  }
+ return 0;
+}

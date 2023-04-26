@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
+#include<string.h>
+char s[25];
+int main()
+{
+    int n;
+    scanf("%d\n",&n);
+    for(int i=0; i<n; i++)
+    {
+        int b[20]= {0},a[128]= {0};
+        int j=0;
+        gets(s);
+        while(s[j])
+        {
+            a[s[j]]++;
+            j++;
+        }
+        while(a['Z']!=0)
+        {
+            a['Z']--;
+            a['E']--;
+            a['R']--;
+            a['O']--;
+            a['0']++;
+        }
+        while(a['W']!=0)
+        {
+            a['O']--;
+            a['W']--;
+            a['T']--;
+            a['2']++;
+        }
+        while(a['U']!=0)
+        {
+            a['O']--;
+            a['U']--;
+            a['F']--;
+            a['R']--;
+            a['4']++;
+        }
+        while(a['X']!=0)
+        {
+            a['I']--;
+            a['S']--;
+            a['X']--;
+            a['6']++;
+        }
+        while(a['S']!=0)
+        {
+            a['S']--;
+            a['E']--;
+            a['V']--;
+            a['E']--;
+            a['N']--;
+            a['7']++;
+        }
+        while(a['G']!=0)
+        {
+            a['E']--;
+            a['I']--;
+            a['H']--;
+            a['G']--;
+            a['T']--;
+            a['8']++;
+        }
+        while(a['H']!=0)
+        {
+            a['E']--;
+            a['E']--;
+            a['R']--;
+            a['H']--;
+            a['T']--;
+            a['3']++;
+        }
+        while(a['O']!=0)
+        {
+            a['E']--;
+            a['N']--;
+            a['O']--;
+            a['1']++;
+        }
+        while(a['V']!=0)
+        {
+            a['E']--;
+            a['F']--;
+            a['I']--;
+            a['V']--;
+            a['5']++;
+        }
+        while(a['I']!=0)
+        {
+            a['E']--;
+            a['N']--;
+            a['I']--;
+            a['N']--;
+            a['9']++;
+        }
+        printf("case #%d:\n",i);
+        for(int j=0; j<=9; j++)
+        {
+            while(a[j+48]!=0)
+            {
+                printf("%c",j+48);
+                a[j+48]--;
+            }
+            if(j==9)
+                printf("\n");
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int T;
+    scanf("%d",&T);
+    for(int cas=0; cas<T; cas++){
+        char Octal[55];
+        scanf("%s",Octal);
+    char decimal[155];
+    int numbers = 0;int digit;
+    int len = strlen(Octal) - 1;
+    for (; len != 1; --len) {
+    digit = Octal[len] - '0';
+    int j = 0,temp;
+    do {
+        if (j < numbers)
+            temp = digit*10 + decimal[j] - '0';
+        else
+            temp = digit*10;
+        decimal[j++] = temp/8 + '0';
+        digit = temp%8;
+    } while (digit!=0 || j < numbers);
+    numbers = j;
+}
+decimal[numbers] = '\0';
+char d0[2]={'0.'};
+int i,d=strlen(d0);
+for(i=0;i<numbers;i++)d0[d+i]=decimal[i];
+printf("case #%d:\n%s\n",cas,d0);
+    }
+
+    return 0;
+}

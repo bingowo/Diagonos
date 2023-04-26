@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+struct pos{
+    long long int x;
+    long long int y;
+};
+int cmp(const void *a,const void *b)
+{
+     struct pos*A=(struct pos*)a;
+     struct pos*B=(struct pos*)b;
+     unsigned long long num1=(llabs)(A->x)+(llabs)(A->y);
+     unsigned long long num2=(llabs)(B->x)+(llabs)(B->y);
+     if(num1<num2) return 1;
+     else if(num2<num1) return -1;
+     else 
+     {
+         if(A->x > B->x) return 1;
+         else if(A->x < B->x) return -1;
+         else
+         {
+            if(A->y > B->y) return 1;
+            else return -1;
+         }
+     }
+}
+long long int step(unsigned long long d1,unsigned long long d2)
+{
+	long long int num=0;
+	long long int d3=0;
+	if(d1%2 == d2%2) return -1;
+	if(d1==0 && d2==0) return 0;
+    while((d1+d2)!=1)
+    {
+    	if(d1%2==0)
+    	{
+    		d3=d1;
+    		d1=d2;
+    		d2=d3;
+		}
+    	if(((d1-1)/2)%2 != (d2/2)%2 )
+		{
+			d1=(d1-1)/2;
+			d2=d2/2;
+		}
+		else
+		{
+			d1=(d1+1)/2;
+			d2=d2/2;
+		}
+		num++;
+	}
+    return num+1;	
+}
+
+int main()
+{
+    int cnt=0;
+    scanf("%d",&cnt);
+    struct pos *L=(struct pos*)malloc(cnt*sizeof(struct pos));
+    for(int i=0;i<cnt;i++) scanf("%lld %lld",&L[i].x,&L[i].y);
+    qsort(L,cnt,sizeof(L[0]),cmp);
+    unsigned long long dit =(unsigned long long)(llabs)(L[0].x-L[1].x)+(unsigned long long)(llabs)(L[0].y-L[1].y);
+    printf("%llu\n",dit);
+    long long int res=0;
+    for(int i=0;i<cnt-1;i++)
+    {
+        unsigned long long d1=llabs(L[i].x-L[i+1].x);
+        unsigned long long d2=llabs(L[i].y-L[i+1].y);
+        long long int re=step(d1,d2);
+        if(re!=-1) res+=re;
+        else break;
+    }
+    printf("%lld",res);
+    free(L);
+    return 0;
+}

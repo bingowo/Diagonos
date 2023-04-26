@@ -1,0 +1,46 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int t;
+	char ch[121] = { 0 };
+	int count = 0;
+	int gcd = 0;
+	int len;
+	int tmp;
+	scanf("%d", &t);
+	for (; t > 0; t--)
+	{
+		gets(ch);
+		len = strlen(ch);
+		for (int i = 0; i < len; i++)
+		{
+			tmp = (int) ch[i];
+			for (;tmp > 0 ;)
+			{
+				int rest;
+				rest = ((int)(tmp / 2));
+				rest = tmp - rest * 2;
+				if (rest == 1)
+				{
+					count++;
+				}
+				tmp /= 2;
+			}
+		}
+		len *= 8;
+		for (int j = 2; j < len; j++)
+		{
+			if ((count % j == 0) && (len % j == 0))
+			{
+				gcd = j;continue;
+			}
+		}
+		count /= gcd;
+		len /= gcd;
+		printf("%d/%d\n", count , len );
+	}
+	return 0;
+}

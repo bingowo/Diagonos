@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+int cmp(void* a,void* b){
+    int m=*(int*)a,n=*(int*)b;
+    if(f(m)!=f(n)) return f(n)-f(m);
+    return m-n;
+}
+int f(int x){
+    int n=0;
+    if(x) {
+        n++;
+        x=x/10;
+    }
+    return n;
+}
+int main()
+{
+    int j,i=0,x[1000000];
+    while(scanf("%d",&x[i])!=EOF)i++;
+    qsort(x,i,sizeof(x[0]),cmp);
+    for(j=0;j<i;j++) printf("%d ",x[j]);
+    return 0;
+}

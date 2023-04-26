@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int cmp1(const void *a, const void *b){//升序
+    return *(int *)a-*(int *)b;
+}
+int cmp2(const void *a, const void *b){//降序
+    return *(int *)b-*(int *)a;
+}
+int main()
+{
+    char c;
+    int n[100],i=0,a[100];
+    int m;
+    scanf("%c",&c);
+    while(1)
+    {
+        scanf("%d",&n[i++]);
+        if(getchar() == '\n')  break;
+    }
+    if(c == 'A'){
+        qsort(n,i,sizeof(n[0]),cmp1);
+    }else if(c == 'D'){
+        qsort(n,i,sizeof(n[0]),cmp2);
+    }
+    for(m=0;m<i;m++){
+        if (n[i] == n[i - 1]) a[i] = 1;
+        else a[i] = 0;//不重复
+    }
+    for(m=0;m<i;m++){
+        if(a[i]== 0 ){
+            printf("%d",n[i]);
+            if(m!=i-1){
+                printf(" ");}
+        }
+    }
+    return 0;
+}

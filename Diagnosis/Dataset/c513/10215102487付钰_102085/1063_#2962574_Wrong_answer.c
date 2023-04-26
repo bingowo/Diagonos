@@ -1,0 +1,41 @@
+#include <stdlib.h>
+#include <stdio.h>
+long long int max(int a,int b)
+{
+    if(a>b) return a;
+    else return b;
+}
+long long int min(int a,int b)
+{
+    if(a<b) return a;
+    else return b;
+}
+int main()
+{
+    long long int x,y,out=0,tmp;
+    scanf("%lld %lld",&x,&y);
+    x=max(x,y);
+    y=min(x,y);
+    if(x%y==0){
+        printf("%lld",(x/y)*4*y);
+    }
+    else{
+    while(x%y!=0){
+        out=out+(x/y)*4*y;
+        x=x-(x/y)*y;
+        if(x<y){
+            tmp=x;
+            x=y;
+            y=tmp;
+        }
+    }
+    printf("%lld",out);
+    }
+}
+
+
+
+
+
+
+

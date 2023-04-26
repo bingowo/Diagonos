@@ -1,0 +1,121 @@
+#include<stdio.h>
+#include<string.h>
+void find_parents(char p[],char child[]){
+	if(strcmp(p,"A")==0&&strcmp(child,"A")==0){
+		printf("{A,AB,B,O}");
+	}
+	if(strcmp(p,"A")==0&&strcmp(child,"B")==0){
+		printf("{AB,B}");
+	}
+	if(strcmp(p,"A")==0&&strcmp(child,"AB")==0){
+		printf("{AB,B}");
+	}
+	if(strcmp(p,"A")==0&&strcmp(child,"O")==0){
+		printf("{A,B,O}");
+	}
+	if(strcmp(p,"B")==0&&strcmp(child,"A")==0){
+		printf("{A,AB}");
+	}
+	if(strcmp(p,"B")==0&&strcmp(child,"B")==0){
+		printf("{A,AB,B,O}");
+	}
+	if(strcmp(p,"B")==0&&strcmp(child,"AB")==0){
+		printf("{A,AB}");
+	}
+	if(strcmp(p,"B")==0&&strcmp(child,"O")==0){
+		printf("{A,B,O}");
+	}
+	if(strcmp(p,"AB")==0&&strcmp(child,"A")==0){
+		printf("{A,B,O}");
+	}
+	if(strcmp(p,"AB")==0&&strcmp(child,"B")==0){
+		printf("{AB,B,O}");
+	}
+	if(strcmp(p,"AB")==0&&strcmp(child,"AB")==0){
+		printf("{A,AB,B}");
+	}
+	if(strcmp(p,"AB")==0&&strcmp(child,"O")==0){
+		printf("impossible");
+	}
+	if(strcmp(p,"O")==0&&strcmp(child,"A")==0){
+		printf("{A,AB}");
+	}
+	if(strcmp(p,"O")==0&&strcmp(child,"B")==0){
+		printf("{AB,B}");
+	}
+	if(strcmp(p,"O")==0&&strcmp(child,"AB")==0){
+		printf("impossible");
+	}
+	if(strcmp(p,"O")==0&&strcmp(child,"O")==0){
+		printf("{A,B,O}");
+	}
+}
+void find_child(char f[],char m[]){
+	if(strcmp(f,"A")==0&&strcmp(m,"A")==0){
+		printf("{A,O}");
+	}
+	if(strcmp(f,"A")==0&&strcmp(m,"B")==0){
+		printf("{A,B,AB,O}");
+	}
+	if(strcmp(f,"A")==0&&strcmp(m,"AB")==0){
+		printf("{A,B,AB}");
+	}
+	if(strcmp(f,"A")==0&&strcmp(m,"O")==0){
+		printf("{A,O}");
+	}
+	if(strcmp(f,"B")==0&&strcmp(m,"A")==0){
+		printf("{A,B,AB,O}");
+	}
+	if(strcmp(f,"B")==0&&strcmp(m,"B")==0){
+		printf("{B,O}");
+	}
+	if(strcmp(f,"B")==0&&strcmp(m,"AB")==0){
+		printf("{A,B,AB}");
+	}
+	if(strcmp(f,"B")==0&&strcmp(m,"O")==0){
+		printf("{B,O}");
+	}
+	if(strcmp(f,"AB")==0&&strcmp(m,"A")==0){
+		printf("{A,B,AB}");
+	}
+	if(strcmp(f,"AB")==0&&strcmp(m,"B")==0){
+		printf("{A,B,AB}");
+	}
+	if(strcmp(f,"AB")==0&&strcmp(m,"AB")==0){
+		printf("{A,B,AB}");
+	}
+	if(strcmp(f,"AB")==0&&strcmp(m,"O")==0){
+		printf("{A,B}");
+	}
+	if(strcmp(f,"O")==0&&strcmp(m,"A")==0){
+		printf("{A,O}");
+	}
+	if(strcmp(f,"O")==0&&strcmp(m,"B")==0){
+		printf("{B,O}");
+	}
+	if(strcmp(f,"O")==0&&strcmp(m,"AB")==0){
+		printf("{A,B,O}");
+	}
+	if(strcmp(f,"O")==0&&strcmp(m,"O")==0){
+		printf("{O}");
+	}
+}
+int main()
+{
+	char f[3],m[3],child[3];
+	scanf("%s%s%s",f,m,child);
+	if(f[0]=='?'){
+		find_parents(m,child);
+		printf(" %s %s",m,child);
+	}
+	if(m[0]=='?'){
+		printf("%s ",f);
+		find_parents(f,child);
+		printf(" %s",child);
+	}
+	if(child[0]=='?'){
+		printf("%s %s ",f,m);
+		find_child(f,m);
+	}
+	return 0;
+}

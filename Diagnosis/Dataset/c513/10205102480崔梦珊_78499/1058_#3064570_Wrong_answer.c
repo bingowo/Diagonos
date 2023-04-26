@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int flag=0;
+    char c;
+    char temp=getchar();
+    if(temp!='/') printf("%c",temp);
+    while((c=getchar())!=EOF)
+    {
+        if(c=='/'&&temp!='/')
+        {
+            temp=c;
+            continue;
+        }
+        if(flag==0)
+        {
+            if(temp=='/'&&c=='/')
+            {
+                while((c=getchar())!='\n')
+                {
+                    temp=c;
+                }
+                printf("\n");
+                temp=c;
+                continue;
+            }
+            if(temp=='/'&&c=='*')
+            {
+                temp=c;
+                while((c=getchar())!=EOF)
+                {
+                    if(temp=='*'&&c=='/')
+                    {
+                        temp=c;
+                        break;
+                    }
+                    temp=c;
+                }
+                continue;
+            }
+            if(c=='"')
+            {
+                flag=1;
+                printf("%c",c);
+                temp=c;
+            }
+            else
+            {
+                printf("%c",c);
+                temp=c;
+            }
+        }
+        else
+        {
+            if(c=='"')
+            {
+                flag=0;
+                printf("%c",c);
+                temp=c;
+            }
+            else
+            {
+                printf("%c",c);
+                temp=c;
+            }
+        }
+    }
+}

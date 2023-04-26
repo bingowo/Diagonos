@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+struct cylinder 
+{   
+    int radius,height;    
+    long long product; 
+};
+
+int cmp(const void* a,const void* b);
+long long Max(long long a,long long b)
+{
+    if (a>b)return a;
+    else return b;
+}
+int main()
+{
+    int n,m;
+    scanf("%d%d",&n,&m);
+    struct cylinder a[1000];
+    for (int i=0;i<n;i++)
+    {
+        scanf("%d%d",&a[i].radius,&a[i].height);
+        a[i].product = (long long)a[i].radius*a[i].height;
+    }
+    long long ans=0;
+    for (int i=0;i<n;i++)
+    {
+        struct cylinder ax[1000];
+        int k=0;
+        for (int j=0;j<n;j++) if (j!=i && a[j].radius<=a[i].radius) ax[k++] = a[j];
+        qsort (ax,k,sizeof (ax[0]),cmp);
+        long long area=0;
+        if (k!=0&&k>=m-1)
+        {
+            for (int cnt=0;cnt<m-1;cnt++)
+                area += ax[cnt].product;
+        }
+        ans = Max(ans,area*2+(long long)a[i].radius*a[i].radius+2*a[i].product);
+    }
+    printf("%lld",ans);
+}
+
+int cmp(const void* a,const void* b)
+{
+    struct cylinder *x,*y;
+    x=(struct cylinder*)&a;
+    y=(struct cylinder*)&b;
+    return (y->product)-(x->product);
+}

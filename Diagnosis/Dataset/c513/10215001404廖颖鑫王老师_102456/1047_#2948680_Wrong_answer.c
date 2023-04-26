@@ -1,0 +1,31 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+int main(int argc,char *argv[])
+{
+	char s[5000], c;
+	int n, k, i, j, cnt = 1;
+	scanf("%d", &n);
+	getchar();
+	for (k = 0; k < n; k++)
+	{
+		gets(s);
+		int len1 = strlen(s);
+		printf("case #%d:\n", k);
+		for (i = 0; i < len1; i++)
+		{
+			if (s[i] == s[i + 1]) cnt++;
+			if (s[i] != s[i + 1] && cnt <= 255)
+			{
+				printf("%d%c", cnt, s[i]); cnt - 1;
+			}
+			if (s[i] != s[i + 1] && cnt > 255)
+			{
+				printf("255%c%d%c", s[i], cnt - 255, s[i]);
+				cnt - 1;
+			}
+			printf("\n");
+		}
+		return 0;
+	}
+}

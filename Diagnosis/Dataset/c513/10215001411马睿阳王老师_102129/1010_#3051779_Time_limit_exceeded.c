@@ -1,0 +1,100 @@
+#include<stdio.h>
+
+int main()
+{
+    int n[501];
+    int d=0,i=0,j=0,k=0,t=0,m=0,g=0,e=0,x=0,l=0,q=0,p=0,a[100]={0},b[10000]={0};
+    while(n[d]!='\0')
+    {
+        scanf("%d",&n[d]);
+        d++;
+    }
+    l=d;
+    q=l/3;
+    for(j=0;j<q;j++)
+    {
+        k=0;
+        k=n[j*3]*100+n[j*3+1]*10+n[j*3+2];
+        t=0;
+        while(k)
+        {
+            a[t]=k%2;
+            k/=2;
+            t++;
+        }
+        p=t;
+        for(t=0;t<=p/2;t++)
+        {
+            d=a[t];
+            a[t]=a[p-1-t];
+            a[p-1-t]=d;
+        }
+        for(t=p;t<10;p++)
+            a[t]=0;
+        for(t=0;t<10;t++,m++)
+            b[m]=a[t];
+        for(t=0;t<10;t++)
+            a[t]=0;
+
+    }
+    g=m;
+    if(l-q*3==1)
+    {
+       while(n[l-1])
+       {
+            b[m++]=n[l-1]%2;
+            n[l-1]/=2;
+       }
+       for(x=0;x<=m/2;x++)
+       {
+           d=b[x];
+           b[x]=b[m-1-x];
+           b[m-1-x]=d;
+       }
+       for(x=m;x<=g+3;x++)
+          b[x]=0;
+    }
+    else if(l-q*3==2)
+    {
+        k=0;
+        k=n[l-2]*10+n[l-1];
+        while(k)
+        {
+            b[m++]=k%2;
+            k/=2;
+        }
+        for(x=0;x<=m/2;x++)
+       {
+           d=b[x];
+           b[x]=b[m-1-x];
+           b[m-1-x]=d;
+       }
+        for(x=m;x<=g+6;x++)
+            b[x]=0;
+    }
+    g=x;
+    while(l)
+    {
+        b[x++]=l%2;
+        l/=2;
+    }
+    e=x;
+     for(m=0;m<=x/2;m++)
+    {
+           d=b[m];
+           b[m]=b[x-1-m];
+           b[x-1-m]=d;
+    }
+    for(m=e;m<=g+9;m++)
+        b[m]=0;
+    b[m]=1;
+    b[m+1]=0;
+    b[m+2]=0;
+    b[m+3]=0;
+    g=m+3;
+    for(m=0;m=g;m++)
+    {
+        printf("%d",b[m]);
+    }
+    return 0;
+}

@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char num[100];
+long long rtoi(char* s,long long len,long long r)
+{
+	long long ret=s[0];
+	for(long long i=1;i<len;i++)
+	{
+		ret=ret*r+s[i];
+	}
+	return ret;
+}
+int main()
+{
+	
+	
+	long long t;
+	scanf("%lld",&t);
+	for(long long m=0;m<t;m++)
+	{
+		for(int i='0';i<='9';i++)
+	{
+		num[i]='-';
+	}
+	for(int i='a';i<='z';i++)
+	{
+		num[i]='-';
+	}
+	for(int i='A';i<='Z';i++)
+	{
+		num[i]='-';
+	}
+		char ans[120];scanf("%s",ans);
+		long long index=0,minnum=0;
+		long long ret,len=strlen(ans);
+		while(ans[index]!=0)
+		{
+			long long al=ans[index];
+			if(index==0)
+			{
+				num[al]=1;
+				ans[index]=num[al];
+			}
+			if(num[al]!='-')
+			{
+				ans[index]=num[al];
+			}
+			if(num[al]=='-')
+			{
+				if(minnum==1)minnum++;
+				ans[index]=minnum;
+				num[al]=minnum;minnum++;
+			}
+			index++;
+		}
+		if(minnum<=1)ret=rtoi(ans,len,2);
+		else ret=rtoi(ans,len,minnum);
+		printf("case #%lld:\n%lld\n",m,ret);
+		
+	}
+	return 0;
+}

@@ -1,0 +1,115 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+int main()
+{
+    char a[20],b[20],c[20];
+    scanf("%s %s %s",a,b,c);
+    char d[20];
+    if(c[0]=='?') 
+    {
+        int lena=strlen(a),lenb=strlen(b);
+        if(lena==1&&lenb==1) 
+        {
+            if(a[0]=='A'&&b[0]=='A') char d[]"{A,O}";
+            if((a[0]=='A'&&b[0]=='B')||(b[0]=='A'&&a[0]=='B')) char d[]="{A,B,AB,O}";
+            if(a[0]=='B'&&b[0]=='B') char d[]="{B,O}";
+            if((a[0]=='A'&&b[0]=='O')||(b[0]=='A'&&a[0]=='O')) char d[]="{A,O}";
+            if((a[0]=='B'&&b[0]=='O')||(b[0]=='B'&&a[0]=='O')) char d[]="{B,O}";
+            if(a[0]=='O'&&b[0]=='O') char d[]="O";
+        }
+        if(lena==2&&lenb==1)
+        {
+            if(b[0]=='A')
+            if(b[0]=='B')
+            if(b[0]=='0')
+        }
+         if(lena==1&&lenb==2)
+        {
+            if(a[0]=='A')
+            if(a[0]=='B')
+            if(a[0]=='0')
+        }
+        if(lena==2&&lenb==2)
+    }
+    if(a[0]=='?')
+    {
+        int lenb=strlen(b),lenc=strlen(c);
+        if(lenc==1&&lenb==1)
+        {
+            if(c[0]=='A')
+            {
+                if(b[0]=='A') 
+                if(b[0]=='B')
+                if(b[0]=='O')
+            }
+            if(c[0]=='B')
+            {
+                if(b[0]=='A') 
+                if(b[0]=='B')
+                if(b[0]=='O')
+            }
+            if(c[0]=='O')
+            {
+                if(b[0]=='A') 
+                if(b[0]=='B')
+                if(b[0]=='O')
+            }
+        }
+         if(lenc==2&&lenb==1)
+         {
+                if(b[0]=='A') 
+                if(b[0]=='B')
+                if(b[0]=='O')
+         }
+         if(lenc==1&&lenb==2)
+          {
+                if(c[0]=='A') 
+                if(c[0]=='B')
+                if(c[0]=='O')
+         }
+         if(lenc==2&&lenb==2)
+         
+    }
+    if(b[0]=='?')
+    {
+        int lena=strlen(a),lenc=strlen(c);
+        if(lenc==1&&lena==1)
+        {
+            if(c[0]=='A')
+            {
+                if(a[0]=='A') 
+                if(a[0]=='B')
+                if(a[0]=='O')
+            }
+            if(c[0]=='B')
+            {
+                if(a[0]=='A') 
+                if(a[0]=='B')
+                if(a[0]=='O')
+            }
+            if(c[0]=='O')
+            {
+                if(a[0]=='A') 
+                if(a[0]=='B')
+                if(a[0]=='O')
+            }
+        }
+         if(lenc==2&&lena==1)
+         {
+                if(a[0]=='A') 
+                if(a[0]=='B')
+                if(a[0]=='O')
+         }
+         if(lenc==1&&lena==2)
+          {
+                if(c[0]=='A') 
+                if(c[0]=='B')
+                if(c[0]=='O')
+         }
+         if(lenc==2&&lena==2)
+         
+    }
+    
+}

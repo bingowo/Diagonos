@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+void readpoly(char *s, int* co)
+{  while (*s)
+   {  int sign=1,a=0,i=0;
+      if (*s=='+' ) s++;
+      else if (*s=='-') sign=-1,s++;
+      while (isdigit(*s)) {  a=a*10+*s-'0'; s++; }
+      if (a==0) a=1;
+      if (*s!='x') { co[0]=a*sign; return; } else s++;
+      if (*s=='^') s++;
+      while (isdigit(*s)) {  i=i*10+*s-'0'; s++; }
+      if (i==0) i=1;
+      co[i]=a*sign;
+    }
+}
+
+int main()
+{ int a,b,c,a1,c1;char s[80]; scanf("%s",s);int co[3]={0};
+   readpoly(s, co);a=co[2],b=co[1],c=co[0];
+   for (a1=1;a1<=a;a1++)
+   for (c1=-200;c1<=200;c1++)
+  { if (c1==0||c%c1) continue;
+     if (a1*c/c1+a/a1*c1==b) { printf("%d %d %d %d\n",a1,c1,a/a1,c/c1);a1=-1;break;}
+  }
+  if (a1!=-1) printf("No Answer!\n");
+  return 0;
+}

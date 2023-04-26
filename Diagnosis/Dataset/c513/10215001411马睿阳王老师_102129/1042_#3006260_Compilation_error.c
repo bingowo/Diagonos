@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char s[17],a[17]={0};
+    int T,i=0,j=0,k=0,t=0,c=0,l=0,w=0,q=0;
+    scanf("%d",&T);
+    for(k=0;k<T;k++)
+    {
+        a[0]='\0';
+        i=0;
+        c=0;
+        l=0;
+        scanf("%s",s);
+        c1=strlen(s);
+        for(i=0;i<c;i++)
+        {   
+           j=i;
+           while(j>=0)
+           {
+               if(s[i]!=s[j]) j--;
+               else break;               
+           }
+           if(j==-1) a[t]=s[i];
+           t++;
+        
+        }
+        l=t-1;
+        printf("%d",k);
+        for(t=0;t<=l;t++)
+        {
+            printf("%c",a[t]);
+            
+        }
+    }
+}

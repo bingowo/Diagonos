@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n,m;
+    scanf("%d%d",&n,&m);
+    long long int a[n];
+    for(int i = 0;i < n;i ++)
+        scanf("%d",&a[i]);
+    int cmp(const void *a,const void *b)
+    {
+        long long int *aa = (long long int*)a,*bb = (long long int*)b;
+        return *aa - *bb;
+    }
+    qsort(a,n,sizeof(a[0]),cmp);
+    long long int sum = 0,b[10000],j,min;
+    if(m == n)
+    {
+        for(int x = 0;x < m;x++)
+            sum += a[m-1] - a[x];
+        min = sum;
+    }
+    else
+    {
+        for(j = 0;j <=n - m;j++)
+        {
+            sum = 0;
+            for(int k = 0;k < m;k ++)
+            {
+                sum += a[j+m-1] - a[j+k];
+            }
+            b[j] = sum;
+        }
+        min = b[0];
+        for(int y= 0;y < j;y ++)
+        {
+            if(b[y] < min)
+                min = b[y];
+        }
+    }
+    printf("%lld",min);
+    return 0;
+}

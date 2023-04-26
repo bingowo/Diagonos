@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<string.h>
+char in[40];
+int out[100];
+int main()
+{
+    int i,k=0,m=0,r,j;
+    long long a=0,b=0,l=1,qr=1,qi=1;
+    scanf("%s",in);
+    if(in[0]=='i')printf("11");
+    else
+    {
+        if(in[strlen(in)-1]=='i')k=1;
+        if(k==1)
+        {
+            for(i=strlen(in)-2;i>=0;i--)
+            {
+                if(m!=0)
+                {
+                    if(in[i]>='0'&&in[i]<='9')
+                    {
+                        a+=(in[i]-'0')*l;
+                        l*=10;
+                    }
+                    else
+                    {
+                        if(in[i]=='-')a=-a;
+                    }
+                }
+                else
+                {
+                    if(in[strlen(in)-2]=='+')
+                    {
+                        b=1;
+                        m=1;
+                    }
+                    else if(in[strlen(in)-2]=='-')
+                    {
+                        b=-1;
+                        m=1;
+                    }
+                    else
+                    {
+                        if(in[i]>='0'&&in[i]<='9')
+                        {
+                            b+=(in[i]-'0')*l;
+                            l*=10;
+                        }
+                        else
+                        {
+                            l=1;
+                            if(in[i]=='-')b=-b;
+                            m=1;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for(i=strlen(in)-1;i>=0;i--)
+            {
+                if(in[i]>='0'&&in[i]<='9')
+                {
+                    a+=(in[i]-'0')*l;
+                    l*=10;
+                }
+                else
+                {
+                    if(in[i]=='-')a=-a;
+                }
+            }
+        }
+        i=0;
+        while(qr!=0||qi!=0)
+        {
+            if(a+b<0)r=-(a+b)%2;
+            else r=(a+b)%2;
+            qr=(r+b-a)/2;
+            qi=(r-a-b)/2;
+            a=qr;
+            b=qi;
+            out[i]=r;
+            i++;
+        }
+        for(j=i-1;j>=0;j--)
+        {
+            printf("%d",out[j]);
+        }
+    }
+    return 0;
+}

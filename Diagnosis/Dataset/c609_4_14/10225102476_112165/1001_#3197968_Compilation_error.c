@@ -1,0 +1,26 @@
+#include<stdio.h>
+void main()
+{
+    int a=0;
+    scanf("%d",&a);
+    int i=0;
+    while(i<a){
+        int m,n=0;
+        scanf("%d %d",&m,&n);
+        char M[1000];
+        int t=0;
+        int c1=0;
+        while (m!=0){
+            c1=m%n;
+            char c2=char(c1);
+            if(c1>=10)
+              M[-t]="c"-"10"+"A";
+            else
+              M[-t]="c"+"0";
+            m=m/n;
+        }
+        printf("%s",M[]);
+        printf("\n");
+        i=i+1;
+    }
+}

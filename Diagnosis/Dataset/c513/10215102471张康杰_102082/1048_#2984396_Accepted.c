@@ -1,0 +1,269 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+//此方法只能判断个位，不能判断十位
+typedef struct 
+{
+    int coe;
+    int exp;
+}NUM;
+int cmp(const void*a,const void*b)
+{
+    return *(int*)b - *(int*)a;
+}
+int main()
+{
+    NUM num1[100];
+    NUM num2[100];
+    char s[101],t[101];
+    while(scanf("%s %s",s,t) != EOF)
+    {
+        char*pt1,*pt2;
+        pt1 = s;
+        pt2 = t;
+        int i = 0,j = 0;
+        int flag1 = 1,flag2 = 0,flag3 = 0;
+        //三个flag分别记录
+        for(pt1;*pt1;pt1++)
+        {
+            if(isdigit(*pt1))
+            {   
+                int num = 0,cnt = 0;
+                while(*pt1)
+                {
+                    if(isdigit(*(pt1 + cnt)))
+                    {
+                        num = num*10 + (*(pt1 + cnt) - '0');
+                        cnt++;
+                    }
+                    else
+                        break;
+                }
+                pt1 = pt1 + cnt - 1;
+                flag1 = 0;
+                flag3 = 1;
+                if(flag2)
+                {
+                    num1[i].coe = -num;
+                    flag2 = 0;
+                }
+                else
+                {
+                    num1[i].coe = num;
+                    //if(*(pt1+1) != 'x')
+                        //num[i].exp = 0;
+                }
+            }
+            else if(*pt1 == 'x')
+            {
+                flag1 = 0;
+                if(flag3)
+                    flag3 = 0;
+                else
+                {
+                    if(flag2)
+                    {
+                        num1[i].coe = -1;
+                        flag2 = 0;
+                    }
+                        
+                    else
+                        num1[i].coe = 1;
+                }
+                    
+                if(*(pt1++))
+                {
+                    if(*pt1 == '^')
+                    {
+                        pt1++;
+                        int num = 0;
+                        while(*pt1)
+                        {
+                            if(isdigit(*pt1))
+                            {
+                                num = num*10 + (*pt1 - '0');
+                                pt1++;
+                            }
+                            else
+                                break;
+                        }
+                        num1[i].exp = num;
+                        pt1--;
+                    }
+                    else
+                    {
+                        num1[i].exp = 1;
+                        if(*pt1 == '+')
+                            i++;
+                        else if(*pt1 == '-')
+                        {
+                            flag2 = 1;
+                            i++;
+                        }
+                    }
+                }
+                else
+                {
+                    num1[i].exp = 1;
+                }      
+            }
+            else if(*pt1 == '-')
+            {
+                if(flag1)
+                {
+                    flag2 = 1;
+                    flag1 = 0;
+                }
+                else
+                {
+                    flag2 = 1;
+                    i++;
+                }
+                
+            }
+            else if(*pt1 == '+')
+            {
+                i++;
+                flag1 = 0;
+            }
+        }
+        if(flag3)
+        {
+            num1[i].exp = 0;
+        }
+        flag2 = 0,flag3 = 0;
+        flag1 = 1;
+        for(pt2;*pt2;pt2++)
+        {
+            if(isdigit(*pt2))
+            {   
+                int num = 0,cnt = 0;
+                while(*pt2)
+                {
+                    if(isdigit(*(pt2 + cnt)))
+                    {
+                        num = num*10 + (*(pt2 + cnt) - '0');
+                        cnt++;
+                    }
+                    else
+                        break;
+                }
+                pt2 = pt2 + cnt - 1;
+                flag1 = 0;
+                flag3 = 1;
+                if(flag2)
+                {
+                    num2[j].coe = -num;
+                    flag2 = 0;
+                }
+                else
+                {
+                    num2[j].coe = num;
+                    //if(*(pt2+1) != 'x')
+                        //num[i].exp = 0;
+                }
+            }
+        
+            else if(*pt2 == 'x')
+            {
+                flag1 = 0;
+                if(flag3)
+                    flag3 = 0;
+                else
+                {
+                    if(flag2)
+                    {
+                        num2[j].coe = -1;
+                        flag2 = 0;
+                    }
+                    else
+                    {
+                        num2[j].coe = 1;
+                    }
+
+                }
+                if(*(pt2++))
+                {
+                    if(*pt2 == '^')
+                    {
+                        pt2++;
+                        int num = 0;
+                        while(*pt2)
+                        {
+                            if(isdigit(*pt2))
+                            {
+                                num = num*10 + (*pt2 - '0');
+                                pt2++;
+                            }
+                            else
+                                break;
+                        }
+                        num2[j].exp = num;
+                        pt2--;
+                    }
+                    else
+                    {
+                        num2[j].exp = 1;
+                        if(*pt2 == '+')
+                        j++;
+                        else if(*pt2 == '-')
+                        {
+                            flag2 = 1;
+                            j++;
+                        }
+                    }
+                }
+                else
+                {
+                    num2[j].exp = 1;
+                }
+                    
+            }
+            else if(*pt2 == '-')
+            {
+                if(flag1)
+                {
+                    flag2 = 1;
+                    flag1 = 0;
+                }
+                else
+                {
+                    flag2 = 1;
+                    j++;
+                }            
+            }
+            else if(*pt2 == '+')
+            {
+                flag1 = 0;
+                j++;
+
+            }
+        }
+        if(flag3)
+        {
+            num2[j].exp = 0;
+        }
+        int mutiple[100];
+        memset(mutiple,0,sizeof(int)*100);
+        int count = 0;
+        //i执行到这变成0了？？？？
+        for(int k = 0;k <= i;k++)
+        {
+            for(int h = 0;h <= j;h++)
+            {
+                mutiple[num1[k].exp + num2[h].exp] += num1[k].coe*num2[h].coe;
+                count++;
+                //coefficent[count++] = num1[k].exp + num2[h].exp;
+            }
+        }
+        for(int k = 99;k >= 0;k--)
+        {
+            if(mutiple[k] == 0)
+                continue;
+            printf("%d%c",mutiple[k],' ');
+        }
+        putchar('\n');
+    }
+    return 0;
+}

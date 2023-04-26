@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    long long int n;
+    scanf("%lld",&n);
+    int i;int x=0,y=0;
+    if(n==0)
+    {
+        printf("(%d,%d)",x,y);
+        return 0;
+    }
+    i=sqrt(n);
+    i=(i-1)/2;
+    int flag=0;
+    long long int copy=(2*i+1)*(2*i+1);
+    x=i;y=i+1;
+    while(flag<(2*i+1)&&(copy!=n))
+    {
+        flag++;
+        x--;
+        copy++;
+    }
+    //printf("%d",);
+    //printf("(%d,%d)",x,y);
+
+    flag=0;
+    while(flag<(2*i+2)&&(copy!=n))
+    {
+        flag++;
+        y--;
+        copy++;
+    }
+    //printf("(%d,%d)",x,y);
+    flag=0;
+    while(flag<(2*i+2)&&(copy!=n))
+    {
+        flag++;
+        x++;
+        copy++;
+    }
+    //printf("(%d,%d)",x,y);
+    flag=0;
+    while(flag<(2*i+2)&&(copy!=n))
+    {
+        flag++;
+        y++;
+        copy++;
+    }
+    //printf("(%d,%d)",x,y);
+    if(copy!=n)y++;
+    printf("(%d,%d)",x,y);
+}

@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int s[500];
+    int i,t,j,n;
+    scanf("%s",s);
+    printf("0001");
+    int num=strlen(s);
+    for(i=9;i>-1;i--) printf("%d",(unsigned)num<<(31-i)>>31);
+    int n;
+    n=num/3;
+    if(num%3==0);
+    for(j=0;j<n/3;j+=3){
+        t=s[j]*100+s[j+1]*10*s[j+2];
+        for(i=9;i>-1;i--) printf("%d",(unsigned)t<<(31-i)>>31);
+    }
+}

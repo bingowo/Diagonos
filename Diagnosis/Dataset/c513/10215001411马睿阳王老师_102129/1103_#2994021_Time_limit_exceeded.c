@@ -1,0 +1,215 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{char s[500005],e[50005]={0};
+ int i=0,j=0,k=0,t=0,d=0,c=0,temp=0,A=0,B=0,C=0,D=0;
+ while(s!=EOF)
+ {scanf("%s",s);
+  if(s[0]=='I')
+    {c=0;d=0;
+     scanf("%s",s);
+     c=strlen(s);
+     for(i=3;i<c;i++)
+        {d=(d+s[i])*10;}
+         d/=10;
+     switch(s[0])
+         {case'A':A=d;break;
+          case'B':B=d;break;
+          case'C':C=d;break;
+          case'D':D=d;break;
+         }
+    }
+  else if(s[0]=='A')
+     {c=0;
+      scanf("%s",s);
+      c=strlen(s);
+      if(s[0]=='A')
+      {if(!isdigit(s[3]))
+          {A+=s[3];}
+      else
+          {for(i=3;i<c;i++)
+           d=(d+s[i])*10;
+           d/=10;
+           A+=d;
+           }
+      }
+      else if(s[0]=='B')
+      {if(!isdigit(s[3]))
+          {B+=s[3];}
+      else
+          {for(i=3;i<c;i++)
+           d=(d+s[i])*10;
+           d/=10;
+           B+=d;
+           }
+      }
+      else if(s[0]=='C')
+      {if(!isdigit(s[3]))
+          {C+=s[3];}
+       else
+          {for(i=3;i<c;i++)
+           d=(d+s[i])*10;
+           d/=10;
+           C+=d;
+           }
+      }
+      else
+      {if(!isdigit(s[3]))
+          {D+=s[3];}
+       else
+          {for(i=3;i<c;i++)
+           d=(d+s[i])*10;
+           d/=10;
+           D+=d;
+           }
+      }
+     }
+  else if(s[0]=='S')
+     {scanf("%s",s);
+      c=0;d=0;
+      c=strlen(s);
+      if(s[0]=='A')
+      {if(!isdigit(s[0]))
+          A=A-s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           A=A-d;
+          }
+      }
+      if(s[0]=='B')
+      {if(!isdigit(s[0]))
+          B=B-s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           B=B-d;
+          }
+      }
+      if(s[0]=='C')
+      {if(!isdigit(s[0]))
+          C=C-s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           C=C-d;
+          }
+      }
+      if(s[0]=='D')
+      {if(!isdigit(s[0]))
+          D=D-s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           D=D-d;
+          }
+      }
+    }
+  else if(s[0]=='M')
+    {scanf("%s",s);
+     c=0;
+     c=strlen(s);
+     if(s[0]=='A')
+      {if(!isdigit(s[0]))
+          A=A*s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           A=A*d;
+          }
+      }
+      if(s[0]=='B')
+      {if(!isdigit(s[0]))
+          B=B*s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           B=B*d;
+          }
+      }
+      if(s[0]=='C')
+      {if(!isdigit(s[0]))
+          C=C*s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           C=C*d;
+          }
+      }
+      if(s[0]=='D')
+      {if(!isdigit(s[0]))
+          D=D*s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           D=D*d;
+          }
+      }
+    }
+  else if(s[0]=='D')
+       {scanf("%s",s);
+        c=0;
+        c=strlen(s);
+       if(s[0]=='A')
+         {if(!isdigit(s[0]))
+          A=A/s[3];
+          else
+             for(i=3;i<c;i++)
+             {d=(d+s[i])*10;
+              d/=10;
+              A=A/d;
+             }
+           }
+      if(s[0]=='B')
+      {if(!isdigit(s[0]))
+          B=B/s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           B=B/d;
+          }
+      }
+      if(s[0]=='C')
+      {if(!isdigit(s[0]))
+          C=C/s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           C=C/d;
+          }
+      }
+      if(s[0]=='D')
+      {if(!isdigit(s[0]))
+          D=D/s[3];
+       else
+          for(i=3;i<c;i++)
+          {d=(d+s[i])*10;
+           d/=10;
+           D=D/d;
+          }
+      }
+
+    }
+  else if(s[0]=='O')
+      {scanf("%s",s);
+       if(s[0]=='A') printf("A");
+       if(s[0]=='B') printf("B");
+       if(s[0]=='C') printf("C");
+       if(s[0]=='D') printf("D");
+      }
+
+
+ }
+ return 0;
+}

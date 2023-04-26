@@ -1,0 +1,33 @@
+#include<stdio.h>
+
+
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        int l;
+        scanf("%d",&l);
+        if(l == -1)
+            break;
+        int d00[22],d01[22],d1[22];
+        d00[1]=0,d01[1]=0,d1[1]=0;
+        d00[2]=1,d01[2]=1,d1[2]=2;
+        d00[3]=2,d01[3]=2,d1[3]=3;
+        for(int j=4;j<21;j++)
+        {
+            d00[j]=d00[j-1]+d01[j-1];
+            d01[j]=d1[j-1];
+            d1[j]=d00[j-1]+d1[j-1];
+        }
+        printf("%d\n",d00[l]+d01[l]+d1[l]);
+        return 0;
+        
+    }
+    
+    
+    
+    
+}

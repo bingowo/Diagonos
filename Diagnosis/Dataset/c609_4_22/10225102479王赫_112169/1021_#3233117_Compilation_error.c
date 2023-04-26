@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int p[26];
+int cmp(const void*a,const void*b){
+    char *s1,char *s2;
+    char ch1,ch2;
+    s1=(char*)a;
+    s1=(char*)a;
+    while(s1&&s2)
+    {
+        ch1=(*s1)>='a'?*s1-32:*s1;
+        ch2=(*s2)>='a'?*s2-32:*s2;
+        if(p[ch1-'A']!=p[ch2-'A']) return p[ch1-'A']-p[ch2-'A'];
+        else
+        {
+            s1++;
+            s2++;
+        }
+    }
+        if(*s1==0) return -i;
+        else return 1;
+}
+int main()
+{
+   char s[27];
+   while(scanf("%s\n",s)!=EOF))
+   {
+    for(int i=0;i<26;i++) p[s[i]-'A']=i;
+    char str[2200];char a[100][21];
+    gets(str);
+    int count=0,i=0;
+    if(!str[i])break;
+    else i++;
+    }
+qsort(a,count,sizeof(a[0]),cmp);
+int k;
+for(k=0;k<count-1;k++) printf("%s",a[k]);
+printf("%s\n",a[k]);
+
+   return 0; 
+}

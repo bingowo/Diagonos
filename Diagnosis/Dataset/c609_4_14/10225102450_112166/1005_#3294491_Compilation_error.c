@@ -1,0 +1,1 @@
+#include<stdio.h>#include<string.h>intmain(){intT;scanf("%d",&T);for(inti=0;i<T;i++){chars[100];scanf("%s",s);intnumber=0;for(intj=0;j<strlen(s);j++)//迭代{if(s[j]=='1'){number=3*number+1;}if(s[j]=='0'){number=3*number;}if(s[j]=='-'){number=3*number-1;}}printf("case #%d:\n",i);printf("%d\n",number);}return0;}

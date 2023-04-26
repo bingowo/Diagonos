@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct circle
+{ int r;
+   int h;
+    
+};
+int cmp1(const void*a,const void*b)
+{ struct circle x,y;
+  x=*((struct circle*)a);
+  y=*((struct circle*)b);
+    return  2*y.r*y.h+y.r*y.r-2*x.r*x.h-x.r*x.r;
+}
+
+int cmp2(const void*a,const void*b)
+{ struct circle x,y;
+  x=*((struct circle*)a);
+  y=*((struct circle*)b);
+    return y.r*y.h-x.r*x.h;
+}
+int main()
+{int m,n,i,x; struct circle a[1100]; long long int sum=0,ce=0,sh=0;
+sum=0;
+scanf("%d %d\n",&n,&m);
+for(i=0;i<n;i++)
+{scanf("%d %d\n",&a[i].r,&a[i].h);
+}
+qsort(a,n,sizeof(a[0]),cmp1); 
+sh=a[0].r*a[0].r;
+ce=2*a[0].r*a[0].h;
+sum+=sh;
+sum+=ce;
+a[0].r=0; a[0].h=0;
+qsort(a,n,sizeof(a[0]),cmp2);
+for(i=0;i<m-1;i++)
+{ ce=2*a[i].r*a[i].h;
+   sum+=ce;
+    }
+printf("%lld",sum);
+}

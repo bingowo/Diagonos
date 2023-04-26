@@ -1,0 +1,101 @@
+#include<stdio.h>
+#include<string.h>
+#define L 10
+int l=0,q=0,c=0;
+
+void input(int a[])///输入
+{int i=0,j,k,n=0,y=1;
+ char s[2*L+1];
+ scanf("%s",s);
+ while(s[i]&&s[i]!='.') i++;
+ for(j=i-1,k=L;j>=0;j--,k--)
+ a[k]=s[j]-'0';
+ for(k=i-1;k>=0;k--)
+    {c+=a[k]*y;
+     y*=10;
+    }
+ for(j=i+1,k=L+1;j<strlen(s);j++,k++)
+ a[k]=s[j]-'0';
+ y=1/10;
+ for(j=i+1;j<strlen(s);j++)
+    {c+=a[k]*y;
+     y/=10;
+     }
+ q=k;
+}
+
+void sub(int a[],int b[],int N)///计算
+{int n=0;
+ if(q-1<L+N)//////////0的问题
+   {for(n=q;n<=L+N;n++)
+     a[n]=0;
+   }
+ else n=0;
+ int k=0,t,x=0,i=0;
+ for(t=2*L;t>L+N;t--)
+   {a[t]=a[t]-b[t]-x;
+    if(a[t]<0)
+       {a[t]+=10;
+        x=1;
+       }
+    else x=0;
+   }
+
+ if(a[t+1]>=5)  a[t]++;///四舍五入
+ else t=L+N;
+
+ for(t=L+N;t>0;t--) //有没有=
+    {a[t]=a[t]-b[t]-x;
+      if(a[t]<0)
+       {a[t]+=10;
+        x=1;
+       }
+      else x=0;
+    }
+  t=0;
+  while(a[t]==0) t++;///如果减完，高数位为0，则把0去掉
+  l=t;
+
+}
+
+void output(int a[],int N)///输出
+{int t=0,k=0;
+ while(t<=L&&a[t]==0) t++;///整数位
+ if(t>L) printf("0");
+ else {for(t=l;t<=L;t++)
+        printf("%d",a[t]);
+       }
+ printf(".");
+ t=L+1;
+
+     for(t=L+1;t<=L+N;t++)///小数位
+     printf("%d",a[t]);
+     printf("\n");
+}
+
+int main()
+{int a[2*L+1]={0},b[2*L+1]={0},N,t=L,h1=0,h2=0,y=1,i=0,j=0,k=0;
+ input(a);
+ h1=c;
+ input(b);
+ h2=c;
+ scanf("%d",&N);
+ if(h1<h2)
+    {printf("-");
+     sub(b,a,N);
+     output(b,N);
+    }
+ else if(h1==h2)
+    {printf("0.");
+     for(t=L+1;t<=L+N;t++)
+      {printf("0");}
+      printf("\n");
+    }
+
+ else
+    {
+     sub(a,b,N);
+     output(a,N);
+    }
+ return 0;
+}

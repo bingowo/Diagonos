@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+int f(long long a)
+{
+    long long tmp=1;
+    int i,cnt;
+    for(i=0; i<64; i++)
+    {
+        if(a&tmp)
+            cnt++;
+        tmp<<=1;
+    }
+    return cnt;
+}
+
+long long cmp(const void *a, const void *b)
+{
+    int num_a, num_b;
+    long long aa, bb;
+    aa=*(long long *)a;
+    bb=*(long long *)b;
+    num_a=f(aa);
+    num_b=f(bb);
+    if(num_a!=num_b)
+        return num_b-num_a;
+    else
+        return a-b;
+}
+
+int main()
+{
+    int T;
+    scanf("%d",&T);
+    int cas=0;
+    for(cas=0; cas<T; cas++)
+    {
+        long long int a[10001];
+        int i,cnt;
+        for(i=0; i<10001; i++)
+            scanf("%lld",&a[i]);
+        cnt=i;
+        qsort(a,cnt,sizeof(a[0]),cmp);
+        printf("case #%d:\n",cas);
+        for(i=0; i<cnt; i++)
+            printf("%lld ",a[i]);
+        printf("\n");
+    }
+}

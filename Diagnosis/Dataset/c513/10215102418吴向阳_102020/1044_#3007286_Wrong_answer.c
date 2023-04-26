@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+int main()
+{
+	char *A = (char *)malloc(10000*sizeof(char));
+	scanf("%s",A);
+	int len = strlen(A), judge = 0;;
+	unsigned long long a;
+	for (int i = 0; i < len; i++)
+	{
+		if(A[i] == '0' && A[i+1]== 'x')
+		{
+			judge++;
+			a = 0;
+			i += 2;
+			int k;
+			for (int j = 0; j < 16 && j < len; j++)
+			{
+				if (i + j == len - 1 && ((A[i + j] > 47 && A[i + j] < 58) || (A[i + j] > 96 && A[i + j] < 103)))
+				{
+					k = len;
+					break;
+				}
+				if (A[i + j] < 48 || (A[i + j] > 57 && A[i + j] <97) || (A[i + j] > 102))
+				{
+					k = i + j;
+					break;
+				}
+			}
+			for (int j = i; j < k; j++) 
+			{
+				if (A[j] > 96 && A[j] < 103) 
+				{
+					a = a*16 + (A[j] - 'a' + 10);
+				}
+				else 
+				{
+					a = a*16 + (A[j] - '0');
+				}
+			}
+			i = k - 1;
+			printf("%lld ",a);
+		}
+	}
+	if (judge == 0) printf("-1");
+	free(A);
+	return 0;	
+}

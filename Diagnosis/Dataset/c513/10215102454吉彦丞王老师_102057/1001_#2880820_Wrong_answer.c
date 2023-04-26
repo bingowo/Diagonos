@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<math.h>
+int length(long long int a,long long int b)
+{
+    int c=1;
+    if(a>=0)
+    {
+        while(a>=b)
+        {
+            a=a/b;
+            c=c+1;
+        }
+    }
+    else
+    {
+        a=a*(-1);
+        c=c+1;
+        while(a>b)
+        {
+            a=a/b;
+            c=c+1;
+        }
+        
+    }
+        return c;
+}
+int main()
+{
+    int number=0;
+    scanf("%d",&number);
+    char s[number][100];
+    long long int f[number][2];
+    for(int i=0;i<number;i++)
+    {
+        scanf("%lld%lld",&f[i][0],&f[i][1]);
+        long long int a=abs(f[i][0]);
+        long long int b=f[i][1];
+        int c=length(f[i][0],b);
+        long long int e[c];
+        for(int j=0;j<c;j++)
+        {
+            e[j]=a%b;
+            a=a/b;
+        }
+        if(f[i][0]>=0)
+        {
+            for(int k=0;k<c;k++)
+            {
+                if(e[k]<10)
+                {
+                    s[i][c-k-1]=e[k]+'0';
+                }
+                else
+                {
+                    long long int deep=e[k]-10;
+                    s[i][c-k-1]=17+deep+'0';
+                }
+            }
+        }
+        else
+        {
+        	s[i][0]='-';
+            for(int k=0;k<c-1;k++)
+            {
+                if(e[k]<10)
+                {
+                    s[i][c-k-1]=e[k]+'0';
+                }
+                else
+                {
+                    long long int deep=e[k]-10;
+                    s[i][c-k-1]=17+deep+'0';
+                }
+            }
+        }
+        
+    }
+    for(int m=0;m<number;m++)
+    {
+        int l=length(f[m][0],f[m][1]);
+        if(length(f[m][0],f[m][1])==1)
+        {
+            printf("%c\n",s[m][0]);
+        }
+        else
+        {
+            printf("%s\n",s[m]);
+        }
+    }
+    return 0;
+}

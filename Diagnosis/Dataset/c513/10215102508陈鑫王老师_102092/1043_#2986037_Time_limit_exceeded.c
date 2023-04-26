@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int isclean(char s[])
+{
+    int ret=0,len=strlen(s);
+    if(len>1)
+    {
+        for(int i=1;i<len;i++)
+        {
+            if(s[i-1]==s[i])
+            {
+                ret=1;
+                break;
+            }
+        }
+    }
+    return ret;
+}
+int dele(char s[])
+{
+    int a=strlen(s),len=strlen(s);
+    for(int i=1;i<len;i++)
+    {
+        for(int j=0;j<i;j++)
+        {
+            if(s[i]==s[j])
+            {
+                for(int k=i;k<len;k++)
+                {
+                    s[k]=s[k+1];
+                    len--;
+                    i--;
+                }
+            }
+        }
+    }
+    int b=strlen(s);
+    return a-b;
+
+
+}
+int duichen(char s[])
+{
+    int max=0,len=strlen(s);
+    if(len==0)
+        max=1;
+    else if(len==2)
+        max=2;
+    else
+    {
+        for(int i=1;i<len;i++)
+        {
+            int temp=0,k=1;
+            for(;i-k>=0&&i+k<len;k++)
+            {
+                if(s[i-k]!=s[i+k])
+                {
+                    temp=2*k;
+                    break;
+                }
+            }
+            if(i-k==-1||i+k==len)
+                temp=2*k;
+            max=max>temp?max:temp;
+            if(max==0)
+                max=2;
+
+        }
+    }
+    return max;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    for(int i=0;i<t;i++)
+    {
+        char s1[102];
+        scanf("%s",s1);
+
+    if(strlen(s1)==1)
+    {
+        printf("case #%d:\n2\n",i);
+    }
+    else if(strlen(s1)==2)
+    {
+        if(s1[0]==s1[1])
+            printf("case #%d:\n3\n",i);
+        else
+            printf("case #%d:\n2\n",i);
+    }
+    else
+    {
+
+       int maxnum=0;
+       while(isclean(s1))
+       {
+           int m=dele(s1);
+           maxnum+=m;
+       }
+       int n=duichen(s1);
+       printf("case #%d:\n%d\n",i,maxnum+n);
+    }
+    }
+    return 0;
+}

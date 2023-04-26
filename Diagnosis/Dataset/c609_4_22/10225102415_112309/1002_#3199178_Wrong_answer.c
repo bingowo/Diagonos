@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void NonRepBin(int);
+int main(){
+	int T, n;
+	scanf("%d", &T);
+	for (int i = 0; i < T; i++){
+		printf("case #%d\n",i);
+		scanf("%d", &n);
+		NonRepBin(n);
+	}
+	return 0;
+}
+void NonRepBin(int n){
+	//将十进制数转为二进制表示
+	int bin[40];
+	int i = 0;
+	//printf("Reversed Binary:");
+	while(n){
+		bin[i] = n % 2;
+		n /= 2;
+		//printf("%d",bin[i]);
+		i++;
+	}
+	//printf("\n");
+	//计算最长非重复子串长度 
+	int len = --i;
+	int max = 1;
+	int nonrep = 1;
+	for(int j = 1; j < len; j++){
+		if(bin[j] != bin[j-1]){
+			nonrep++;
+		}else{
+			if(nonrep > max) max = nonrep;
+			nonrep = 1;
+		}
+		//printf("NonRep:%d\n",nonrep);
+	}
+	printf("%d\n",max); 
+}

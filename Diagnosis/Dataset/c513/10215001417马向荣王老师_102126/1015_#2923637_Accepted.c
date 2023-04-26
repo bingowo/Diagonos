@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int T, I, weight[25]={2,3,5,7,11, 13,17,19,23,29, 31,37,41,43,47, 53,59,61,67,71, 73,79,83,89,97};//满weight[i]进一
+    scanf("%d",&T);
+    for(I=0; I<T; I++)
+    {
+        int n1[26]={0}, n2[26]={0}, i, j, l1, l2, cnt;
+        char s1[100], s2[100];
+        scanf("%s %s",s1,s2);
+        l1=strlen(s1);
+        l2=strlen(s2);
+        for(i=l1-1, cnt=0, j=1; i+1; i--)
+        {
+            if(s1[i]==',') {j=1; cnt++;}
+            else
+            {
+                n1[cnt]+=(s1[i]-'0')*j;
+                j*=10;
+            }
+        }
+        for(i=l2-1, cnt=0, j=1; i+1; i--)
+        {
+            if(s2[i]==',') {j=1; cnt++;}
+            else
+            {
+                n2[cnt]+=(s2[i]-'0')*j;
+                j*=10;
+            }
+        }
+        for(i=0; i<25; i++)
+        {
+            n1[i]+=n2[i];
+            if(n1[i]>=weight[i])
+            {
+                n1[i+1]+=n1[i]/weight[i];
+                n1[i]%=weight[i];
+            }
+        }
+        printf("case #%d:\n",I);
+        for(i=25; i; i--) if(n1[i]) break;
+        for(; i; i--) printf("%d,",n1[i]);
+        printf("%d\n",n1[i]);
+    }
+    return 0;
+}

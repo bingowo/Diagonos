@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int cmp(const void* a,const void* b)
+{
+    long long x=*(long long*)a;
+    long long y=*(long long*)b;
+    if(x>y) return 1;
+    return -1;
+}
+long long ans[100000];
+int n,m;
+int main()
+{
+    scanf("%d %d",&n,&m);
+    for(int i=1;i<=n;i++)
+    {
+        scanf("%lld",&ans[i]);
+    }
+    qsort(ans+1,n,sizeof(ans[1]),cmp);
+    long long res=ans[m]*(m-1);
+    for(int i=1;i<=m-1;i++)
+    {
+        res=res-ans[i];
+    }
+    long long temp=res;
+    for(int i=m+1;i<=n;i++)
+    {
+        temp=temp+(ans[i]-ans[i-1])*m;
+        temp=temp-ans[i]+ans[i-m];
+        if(temp<res) res=temp;
+    }
+    printf("%lld\n",res);
+    return 0;
+}

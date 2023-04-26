@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<stdlib.h>
+int trans(long long n){
+   if(n==0)return 0;
+   long long a=n%-2;
+   long long b=n/-2;
+   if(a<0){a-=-2;b+=1;}
+   trans(b);
+   printf("%lld",a);
+}
+int main(){
+  int num;
+  scanf("%lld",&num);
+  trans(num);
+  return 0;
+}

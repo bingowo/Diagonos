@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{char k[20]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J'};
+int num[1000];
+int a,b,temp,i;
+scanf("%d%d",&a,&b);
+for(i=0;a;i++)
+    {if(a<0){temp=a/b;num[i]=a-(temp+1)*b;a=temp+1;}
+    else{num[i]=a%b;a/=b;}}
+for(i--;i>=0;i--){printf("%c",k[num[i]]);}}

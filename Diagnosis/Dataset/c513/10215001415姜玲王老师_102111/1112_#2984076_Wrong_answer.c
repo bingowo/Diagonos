@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+ int c[1001],i,k,m;
+ for(i=1;i<1001;i++)
+ {
+     k=0;
+     m=i-3;
+     while(m>0)
+     {k=k+m/2+1;
+         m-=3;}
+    c[i]=k;
+     }
+ int n;
+ scanf("%d",&n);
+ for(int i=0;i<n;i++)
+ {
+     int t,j,sum=0;
+     scanf("%d",&t);
+     j=t-4;
+     while(j>0)
+     {sum=sum+c[j]+j/2+1;
+     j-=4;}
+     sum=sum+c[t]+t/2+1;
+     printf("%d\n",sum);
+ }
+
+}

@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    int n,N=100;
+    int i,j,x,y,result,r,z,c;
+    int s;
+    int a[N];
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+        scanf("%d",&s);
+        for(j=0;s!=0;j++){
+            a[j]=s%2;
+            s=s/2;
+        }
+        c=1;r=1;
+        for(x=1;x<j;x++){
+            if(a[x]!=a[x-1]){r++;}
+            if(a[x]==a[x-1]){if(r>=c){c=r;}r=1;}
+
+            if(r>=c){c=r;}
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        printf("case #%d:\n",i);
+        printf("%d\n",c);
+    }
+
+
+
+
+
+
+   return 0;
+}

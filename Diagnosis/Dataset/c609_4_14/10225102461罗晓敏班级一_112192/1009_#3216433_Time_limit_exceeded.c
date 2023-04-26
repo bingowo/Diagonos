@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+int f1(char a){
+	int i,ret=0;
+	for(i=0;i<8;i++){
+		if(a>>i&1==1){
+			ret++;
+		}
+	}
+	return ret;
+}
+int f2(int a,int b){
+	int c;
+	while(b!=0){
+		c=a;
+		a=b;
+		b=c%b;
+	}
+	return a;
+}
+void duru(char s[]){
+	int i=0;
+	int a=1;
+	while(a){
+		scanf("%s",s+i);
+		i=strlen(s);
+		if(getchar()==' '){
+			s[i]=' ';i++;
+		}else if(getchar()=='\t'){
+			s[i]='\t';i++;
+		}else if(getchar()=='\n'){
+			a=0;
+		}
+	}
+}
+int main(){
+	int n,i,j;
+	int numerator,denominator,q;
+	scanf("%d",&n);
+	char s[120];
+	for(i=0;i<n;i++){
+		numerator=0;
+		duru(s);
+		for(j=0;s[j];j++){
+			numerator+=f1(s[j]);
+		}
+		denominator=j*8;
+		q=f2(denominator,numerator);
+		printf("%d/%d\n",numerator/q,denominator/q);
+	}
+}

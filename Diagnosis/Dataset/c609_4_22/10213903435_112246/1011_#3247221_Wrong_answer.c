@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char s[100];
+    scanf("%s",s);
+    int A=0,B=0,C=1;
+    int cnt=0,i=0;
+    for(;s[i]!='.';i++)
+    {
+        if(s[i]=='2')A=A*3-1;
+        else A=A*3+s[i]-'0';
+    }
+    for(int j=i+1;s[j];j++)
+    {
+        C*=3;
+        if(s[j]=='2')B=B*(C/3)-1;
+        else B=(s[j]-'0')+B*(C/3);
+        A+=B/C;
+        B=B%C;
+    }
+    if(B<0){B=C+B;A--;}
+    printf("%d %d %d",A,B,C);
+    return 0;
+}

@@ -1,0 +1,1 @@
+#include <stdio.h>#include <stdlib.h>#include <string.h>#include <math.h>int main(){   int k,T; scanf("%d",&T); for(k=0;k<T;k++) { int n;    scanf("%d",&n); 	printf("case #%d:\n",k); 	int coun=n/5+n/25+n/125+n/625; 	printf("%d\n",coun);	return 0;} }

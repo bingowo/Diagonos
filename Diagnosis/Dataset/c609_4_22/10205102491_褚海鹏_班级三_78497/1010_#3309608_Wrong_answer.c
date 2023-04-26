@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+char W[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+          'A', 'B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+
+int mod(int n, int k)
+{
+    if(n%k<0) printf("%d",n-(n/k+1)*k);
+    else printf("%d",n%k);
+}
+
+int main()
+{
+    int n, k;
+    scanf("%d%d",&n,&k);
+    if(n==0)printf("0");
+    else
+    {
+        while(n)
+	    {
+            mod(n,k);
+            if(n%k<0)
+                n=n/k+1;
+            else
+                n/=k;
+        }
+
+	}
+    return 0;
+}

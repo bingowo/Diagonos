@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+const double ep = 1e-8;
+const double pi = 3.1415926;
+
+typedef struct{
+    double x;
+    double y;
+    double r;
+    double th;
+}point;
+
+int cmp(const void *a,const void *b)
+{
+    point *pa = (point *)a;
+    point *pb = (point *)b;
+    int temp;
+    if(fabs(pa->th - pb->th)>ep){
+        return pa->th-pb->th>ep?1:-1;
+    }
+    else{
+        return pa->r-pb->r<ep?1:-1;
+    }
+}
+
+int main(void)
+{
+    int t;
+    scanf("%d",&t);
+    for (int i=0; i<t; i++) {
+        int n;
+        scanf("%d",&n);
+        point in[n];
+        for (int j=0; j<n; j++) {
+            scanf("%lf %lf",&in[j].x,&in[j].y);
+            in[j].r = sqrt(in[j].x*in[j].x+in[j].y*in[j].y);
+            in[j].th = atan2(in[j].y,in[j].x);
+            if(in[j].th<0){
+                in[j].th+=2*pi;
+            }
+        }
+        qsort(in, n, sizeof(point), cmp);
+        printf("case #%d:\n",i);
+        for (int j=0; j<n; j++) {
+            printf((("%.4f,%.4f)\n"),in[j].r,in[j].th);
+        }
+    }
+                   return 0;
+}

@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#include<stdlib.h>
+int cmp(const void*a,const void*b){
+	char* c = (char *)a;
+    char* d = (char *)b;
+    int x=strcmp(c,d);
+	if(x>0) return 1;
+	if(x<0) return  -1;
+	else return 0;
+}
+int main(){
+	int T;
+	scanf("%d",&T);
+	getchar();
+	for(int v=0;v<T;v++){
+	   char c[5000];
+	   char str[5000][5000]={0};
+	   gets(c);
+        int len=strlen(c);
+		int i=0,j=0,k=0;
+        for(;c[i];i++){
+        if(isalpha(c[i]))	{str[j][k]=c[i]; k++;continue;}
+        else {str[j][k]='\0';j++;k=0;}	}
+		printf("case #%d:\n",v);
+		if(j==0) printf("%s\n",str[0]);
+		else if(j>=1){
+		qsort(str,j,sizeof(str[0]),cmp);
+		for(int f=0;f<j;f++){
+		if(strcmp(str[f],str[f+1])==0) {continue;}
+		else {if(strlen(str[f]))
+		{
+		printf("%s",str[f]);
+		if(f<j-1) printf(" ");}}
+		}
+		printf("\n");}	
+	}
+	return 0;
+}

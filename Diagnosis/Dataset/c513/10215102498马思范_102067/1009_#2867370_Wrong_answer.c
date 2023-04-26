@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int gcd(int a, int b)
+{
+    return a ? gcd(b % a, a) : b;
+}
+int main()
+{
+    int a;
+    char s[150];
+    scanf("%d",&a);
+    for(int j=0;j<a;j++)
+    {
+        scanf("%s",s);
+        int m=0;
+        for(int i=0;i<strlen(s);i++)
+        {   unsigned char u=s[i];
+            for(int c=0;c<8;c++)
+        {
+                m=m+u%2;
+                u=u/2;
+        }
+        }
+            int g = gcd(m, strlen(s)*8);
+            printf("%d/%d",m/g,strlen(s)*8/g);
+            printf("\n");
+    }
+    return 0;
+}

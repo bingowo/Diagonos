@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    int cas, t;
+    scanf("%d", &cas);
+    for (t = 0; t < cas; ++t){
+        char s[120];
+        scanf("%s", s);
+        int check[128]={0};
+        int len = strlen(s), i;
+        int cnt[4] = {0}, tot[4] = {0}, ans[4];
+        if(len==4)
+        {
+            for(int t=0;t<4;t++)
+            {
+                if(s[t]!='!') check[s[t]]++;
+            }
+            if(check['B']==0) cnt[1]++;
+            else if(check['Y']==0) cnt[2]++;
+            else if(check['G']==0)  cnt[3]++;
+            else if(check['R']==0)  cnt[0]++;
+            printf("case #%d:\n%d %d %d %d",t,cnt[0],cnt[1],cnt[2],cnt[3]);
+        }
+        else {
+            for (i = 0; i < len; ++i){
+            ++tot[i % 4];
+            switch(s[i]){
+                case 'R': ++cnt[0]; ans[0] = i % 4; break;
+                case 'B': ++cnt[1]; ans[1] = i % 4; break;
+                case 'Y': ++cnt[2]; ans[2] = i % 4; break;
+                case 'G': ++cnt[3]; ans[3] = i % 4; break;
+            }
+        }
+
+        printf("case #%d:\n%d %d %d %d\n", t, tot[ans[0]] - cnt[0], tot[ans[1]] - cnt[1], tot[ans[2]] - cnt[2], tot[ans[3]] - cnt[3]);
+    }
+    }
+    return 0;
+}

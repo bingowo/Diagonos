@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int k=0;
+int reverse(char *s){
+    int a1,a2;
+    char s1[21],*s2;
+    s2=s+strlen(s)-1;
+    while(s2>=s){
+        *s1=*s2;
+        s1++;
+        s2--;
+    }
+    *s1=0;
+    if(strcmp(s1,s)==0)return atoi(s);
+    k++;
+    a1=atoi(s);
+    a2=atoi(s1);
+    a1=a1+a2;
+    char s2[21];
+    itoa(a1,s2);
+    reverse(s2);
+}
+int main(){
+    char s[20];
+    scanf("%s",s);
+    int n;
+    n=reverse(s);
+    printf("%d %d",k,n);
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+void multi(long long int* list,int ans){
+    int lens;
+    for(int i=0;i<1000;i++){
+        list[i]=list[i]*ans;
+        if(list[i]!=0)lens=i;
+    }
+    for(int i=998;;i--){
+        list[i]=list[i+1]/10+list[i];
+        list[i+1]=list[i+1]%10;
+        if(i==(lens-1))break;
+    }
+}
+
+int main(){
+    int T;
+    scanf("%d",&T);
+    for(int t=0;t<T;t++){
+    long long int sum[1000];
+    
+    for(int i=0;i<999;i++){
+        sum[i]=0;
+    }
+    int a,n;
+    scanf("%d%d",&a,&n);
+    sum[999]=a;
+    for(int i=1;i<n+1;i++){
+        multi(sum,i);
+    }
+    int j=0;
+    for(;j<1000;j++){
+        if(sum[j]!=0)break;
+    }
+    printf("case #%d:\n",t);
+    int ze=0;
+    for(;j<10000;j++){
+    if(sum[j]==0)ze=ze+1;}
+    printf("%d\n",ze);
+    }
+
+    return 0;
+}

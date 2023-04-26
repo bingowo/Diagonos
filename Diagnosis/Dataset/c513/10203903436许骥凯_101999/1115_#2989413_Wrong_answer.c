@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int cmp(const void *p1, const void *p2){
+    return *(char *)p1 - *(char *)p2;
+}
+
+int main(){
+    int n; scanf("%d", &n);
+    for (int i = 0; i != n; i++){
+        printf("case #%d:\n", i);
+        char s[20]; scanf("%s", s);
+        int slen = strlen(s);
+
+        int flag = 0; 
+        for (int i = 0; i != slen - 2; i++)
+            if (s[i] < s[i+1]){
+                flag = 1; break;
+            }
+        if (!flag){
+            printf("%s0\n", s);
+            continue;
+        }
+
+        int left = 0;
+        for (int i = slen - 1; i >= 1; i--)
+            if (s[i] > s[i-1]){
+                left = i - 1; break;
+            }
+        int right = 0;
+        for (int i = left; i < slen; i++)
+            if (s[i] > s[left]) right = i;
+
+        if (right == 0 && left == 0){
+            char c = s[slen - 2]; s[slen-2] = s[slen-1]; s[slen-1] = c;
+        }
+        else{
+            char c = s[left]; s[left] = s[right]; s[right] = c;
+            qsort(s + left + 1, slen - left - 1, sizeof(char), cmp);
+        } 
+        printf("%s\n", s);
+    }
+    return 0;
+}

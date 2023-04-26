@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+
+
+long long result(long long x,long long y)
+{
+    if(y==0)
+    {
+        return 0;
+    }
+    else{
+        return (y*4)*(x/y)+result(y,x%y);
+    }
+}
+
+int main()
+{
+    long long x,y;
+    scanf("%lld %lld",&x,&y);
+    long long ans=result(x,y);
+    printf("%lld\n",ans);
+    return 0;
+}

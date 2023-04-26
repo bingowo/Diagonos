@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    long long x,y;
+    scanf("%lld %lld",&x,&y);
+    if ((x+y)%2==0)
+    {
+        if (x==0&&y==0) printf("0");
+        else printf("-1\n");
+        return 0;
+    }
+    int step = 0;
+    while (x||y)
+    {
+        if (!x&&y)
+        {
+            if (y==1) {y--; step++;}
+            else if (y==-1) y++, step++;
+            else
+            {
+                if ((y-1)%2==0) y--, step++;
+                else y++, step++;
+            }
+            y /= 2;
+        }
+        else if (x&&!y)
+        {
+            if (x==1) x--, step++;
+            else if (x==-1) x++, step++;
+            else
+            {
+                if ((x-1)%2==0) x--, step++;
+                else x++, step++;
+            }
+            x /= 2;
+        }
+        else if (!(x&1)&&(y&1))
+        {
+            long long temp = x/2+(y-1)/2;
+            if (temp&1) y--; else y++;
+            x /= 2; y /= 2;
+            step++;
+        }
+        else if (!(y&1)&&(x&1))
+        {
+            long long temp = y/2+(x-1)/2;
+            if (temp&1) x--; else x++;
+            x /= 2; y /= 2;
+            step++;
+        }
+    }
+    printf("%d\n",step);
+    return 0;
+}

@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<string.h>
+char in[501];
+int out[10],ans[2001];
+int main()
+{
+    int i,j,k,l,num,len,anslen;
+    scanf("%s",in);
+    len=strlen(in);
+    k=len%3;
+    anslen=len/3*10;
+    for(i=0;i<len/3;i++)
+    {
+        num=(in[3*i]-'0')*100+(in[3*i+1]-'0')*10+in[3*i+2]-'0';
+        j=i*10+9;
+        while(num>0)
+        {
+            ans[j]=num%2;
+            num=num/2;
+            j--;
+        }
+        while(j>=i*10)
+        {
+            ans[j]=0;
+            j--;
+        }
+    }
+    if(k==1)
+    {
+        num=in[3*i]-'0';
+        j=i*10+3;
+        while(num>0)
+        {
+            ans[j]=num%2;
+            num=num/2;
+            j--;
+        }
+        while(j>=i*10)
+        {
+            ans[j]=0;
+            j--;
+        }
+        anslen+=4;
+    }
+    else if(k==2)
+    {
+        num=(in[3*i]-'0')*10+(in[3*i+1]-'0');
+        j=i*10+6;
+        while(num>0)
+        {
+            ans[j]=num%2;
+            num=num/2;
+            j--;
+        }
+        while(j>=i*10)
+        {
+            ans[j]=0;
+            j--;
+        }
+        anslen+=7;
+    }
+    j=9;
+    num=len;
+    while(num>0)
+    {
+        out[j]=num%2;
+        num=num/2;
+        j--;
+    }
+    while(j>=0)
+    {
+        out[j]=0;
+        j--;
+    }
+    printf("0001");
+    for(i=0;i<10;i++)
+    {
+        printf("%d",out[i]);
+    }
+    for(i=0;i<anslen;i++)
+    {
+        printf("%d",ans[i]);
+    }
+    return 0;
+}

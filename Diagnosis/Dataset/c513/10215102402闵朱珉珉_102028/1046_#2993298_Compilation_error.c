@@ -1,0 +1,1 @@
+&&strcmp(s[k].temp,"AN")!=0

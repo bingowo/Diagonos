@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+#include<math.h>
+
+
+
+int main()
+{
+    int T;scanf("%d",&T);
+    for(int step=0;step<T;step++){
+        printf("case #%d:\n",step);
+        int rp=0,bp=0,yp=0,gp=0,judge=0;
+        char s[101];scanf("%s",s);
+        int res[5],fr=-1,fg=-1,fy=-1,fb=-1;
+        for(int i=0;i<4;i++)res[i]=0;
+        for(int i=0;i<strlen(s)&&judge<4;i++){
+                if(s[i]=='R'){
+                    if(rp==0){
+                        rp=i;
+                        judge++;
+                        fr=1;
+                    }
+                }
+                if(s[i]=='B'){
+                    if(bp==0){
+                        bp=i;
+                        judge++;
+                        fb=1;
+                    }
+                }
+                if(s[i]=='Y'){
+                    if(yp==0){
+                        yp=i;
+                        judge++;
+                        fy=1;
+                    }
+                }
+                if(s[i]=='G'){
+                    if(gp==0){
+                        gp=i;
+                        judge++;
+                        fg=1;
+                    }
+                }
+            }
+        rp%=4;bp%=4;yp%=4;gp%=4;
+        if(fr==-1)rp=6-(bp+yp+gp);
+        if(fb==-1)bp=6-(rp+yp+gp);
+        if(fy==-1)yp=6-(rp+bp+gp);
+        if(fg==-1)gp=6-(rp+bp+yp);
+        for(int i=0;i<strlen(s);i++){
+            if(s[i]=='!'){
+                if(i%4==rp)res[0]++;
+                if(i%4==bp)res[1]++;
+                if(i%4==yp)res[2]++;
+                if(i%4==gp)res[3]++;
+            }
+        }
+        printf("%d %d %d %d\n",res[0],res[1],res[2],res[3]);
+    }
+    return 0;
+}

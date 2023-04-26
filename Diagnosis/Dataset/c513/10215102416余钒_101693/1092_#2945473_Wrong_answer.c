@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#define M 100000000
+char s[1005];
+int a,b,n,l;
+struct node {
+	long long num[1005];
+	int cnt,flg;
+} A;
+void out(struct node x){
+	if(x.flg==-1) putchar('-');
+	printf("%lld",x.num[x.cnt]);
+	for(int i=x.cnt-1;i;i--) printf("%08d",x.num[i]);
+	puts("");
+}
+void init(struct node* x,int val) {
+	x->cnt=1,x->num[1]=val;
+	if(val<0) x->flg=-1,x->num[1]*=-1;
+	else x->flg=1;
+}
+void multi(struct node* x,int val) {
+	if(val<0) x->flg*=-1,val=-val;
+	x->num[x->cnt+1]=0;
+	for(int i=1; i<=x->cnt; i++) x->num[i]*=val;
+	for(int i=1; i<=x->cnt; i++) x->num[i+1]+=x->num[i]/M,x->num[i]%=M;
+	if(x->num[x->cnt+1]>0) x->cnt++;
+	while(x->num[x->cnt]==0 && x->cnt>1) x->cnt--;
+}
+
+int main() {
+	init(&A,1);
+	scanf("%s",s);
+	for(int i=0;s[i];i++){
+		int cnt=1;
+		if(i>0 && s[i-1]!=s[i]) cnt++;
+		if(s[i+1] && s[i+1]!=s[i]) cnt++;
+		if(i>0 && s[i+1] && s[i-1]==s[i+1]) cnt--;
+		multi(&A,cnt); 
+	}
+	out(A);
+	return 0;
+}

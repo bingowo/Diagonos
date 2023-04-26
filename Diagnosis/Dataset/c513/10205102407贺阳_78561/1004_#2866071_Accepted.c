@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void solveint(int n);
+void solvedouble(double d);
+int main()
+{
+	int i=0;
+	for(i;i<100;i++)
+	{
+		char s[31];
+		while (scanf("%s", s) != EOF)
+			if (strchr(s, '.')== NULL) 
+				solveint(atoi(s));
+			else
+				solvedouble(atof(s));
+		
+		return 0;
+	}
+}
+void solveint(int n)
+{
+	int c = sizeof(n);
+	unsigned char* p = (unsigned char*)&n;
+	while (c--)
+		printf("%02x ", *p++);
+	printf("\n");
+}
+void solvedouble(double d)
+{
+	int c = sizeof(d);
+	unsigned char* p = (unsigned char*)&d;
+	while (c--)
+		printf("%02x ", *p++);
+	printf("\n");
+}

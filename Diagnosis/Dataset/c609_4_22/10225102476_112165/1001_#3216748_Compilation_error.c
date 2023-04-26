@@ -1,0 +1,59 @@
+#include<stdio.h>
+void main()
+{
+    int a;
+    scanf("%d\n", &a);
+    int i = 0;
+    while (i < a) {
+        int m, n = 0;
+        scanf("%d %d", &m, &n);
+        if(m>=0)
+        {
+            int d = 0;
+            int u = m;
+            while (u) {
+                u = u / n;
+                d++;
+            }
+            char M[1000];
+            int t = 0;
+            int c = 0;
+            while (m) {
+                c = m % n;
+                if (c >= 10)
+                    M[d - 1] = 'A' + c - 10;
+                else
+                    M[d - 1] = '0' + c;
+                m = m / n;
+                d--;
+            }
+            printf("%s", M);
+            printf("\n");
+            i++;
+        }
+        else {
+            int m0 = -m;
+            int d = 0;
+            int u = m0;
+            while (u) {
+                u = u / n;
+                d++;
+            }
+            char M[1000];
+            M[0] = '-';
+            int t = 0;
+            int c = 0;
+            while (m0) {
+                c = m0 % n;
+                if (c >= 10)
+                    M[d] = 'A' + c - 10;
+                else
+                    M[d] = '0' + c;
+                m0 = m0 / n;
+                d--;
+            }
+            printf("%s", M);
+            printf("\n");
+            i++;
+        }
+    }

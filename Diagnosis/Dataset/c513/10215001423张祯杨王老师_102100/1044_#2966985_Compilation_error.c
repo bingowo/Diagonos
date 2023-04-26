@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+int main()
+{ char s[10000];
+  gets(s);
+  int len=strlen(s);
+  int m=0,a[10000]={0};
+  for(int i=0;i<len;)
+  {  if(s[i]!=0) i++;
+     else if(s[i]==0)
+     {  if(s[i+1]!='x') i++;
+        else if(s[i+1]=='x')
+        {  int count=0,q=0;
+           while(1)
+            {  if(s[i+q+2]>='0'&&s[i+q+2]<='9'&&s[i+q+2]>='a'&&s[i+q+2]<='f') q++;
+               else break;
+            }
+            if(q!=0)
+            {  for(int c=1;c<=q;c++)
+               {  if(s[i+s+1]<='9') a[count]+=pow(16,q-c)*((int)s[i+s+1]-48);
+                  else if(s[i+s+1]>='a') a[count]+=pow(16,q-c)*((int)s[i+s+1]-87);
+                }
+                count++;
+            }
+             i=i+q+2;
+        }
+
+     }
+
+  }
+  for(int i=0;i<=count;i++) printf("%d",a[i]);
+  return 0；
+}

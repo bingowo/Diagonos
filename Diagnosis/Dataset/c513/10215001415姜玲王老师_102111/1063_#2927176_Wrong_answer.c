@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+unsigned long long acculate(unsigned long long a,unsigned long long b, unsigned long long c,unsigned long long d)
+{if(c){if(a>b) {a=a-b;c=c-b*b;d+=4*b;}
+       else  {b=b-a;c=c-a*a;d+=4*a;}
+       acculate(a,b,c,d);}
+else return d;
+}
+int main()
+{unsigned long long a,b,c;
+scanf("%ull%ull",&a,&b);
+c=a*b;
+printf("%ull",acculate(a,b,c,0));
+
+}

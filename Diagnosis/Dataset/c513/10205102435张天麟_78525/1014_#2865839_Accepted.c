@@ -1,0 +1,110 @@
+#include<stdio.h>
+int main()
+{
+    int A,B,x,z;
+    int zs[30],xs[30];
+    scanf("%d %d",&A,&B);
+    int k=0,i=0,a,b;
+    a=A;
+    b=B;
+    z=a/b;
+    x=a%b;
+    while(B!=1)
+    {
+        B=B/3;
+        xs[k]=x%3;
+        x=x/3;
+        k++;
+    }
+    while(z!=0)
+    {
+        zs[i]=z%3;
+        z=z/3;
+        i++;
+    }
+    int jin=0,j;
+    for(j=0;j<k;j++)
+    {
+        xs[j]+=1+jin;
+        jin=xs[j]/3;
+        xs[j]%=3;
+    }
+    for(j=0;j<i;j++)
+    {
+        zs[j]+=1+jin;
+        jin=zs[j]/3;
+        zs[j]%=3;
+    }
+    if(jin!=0)
+    {
+        printf("%d",jin);
+    }
+    for(j=0;j<k;j++)
+    {
+        xs[j]--;
+        if(xs[j]<0)
+        {
+            xs[j]+=3;
+        }
+    }
+    for(j=0;j<i;j++)
+    {
+        zs[j]--;
+        if(zs[j]<0)
+        {
+            zs[j]+=3;
+        }
+    }
+    if(jin==0)
+    {
+        i--;
+        while(zs[i]==0)
+        {
+            i--;
+        }
+        i++;
+    }
+    int start=0;
+    while(xs[start]==0)
+    {
+        start++;
+    }
+    z=a/b;
+    x=a%b;
+    if(z==0&&x==0)
+    {
+        printf("0");
+    }
+    else if(z==0&&x!=0)
+    {
+        if(jin==0)
+        {
+            printf("0");
+        }
+        printf(".");
+        for(j=k-1;j>=start;j--)
+        {
+            printf("%d",xs[j]);
+        }
+    }
+    else if(x==0&&z!=0)
+    {
+        for(j=i-1;j>=0;j--)
+        {
+            printf("%d",zs[j]);
+        }
+    }
+    else
+    {
+        for(j=i-1;j>=0;j--)
+        {
+            printf("%d",zs[j]);
+        }
+        printf(".");
+        for(j=k-1;j>=start;j--)
+        {
+            printf("%d",xs[j]);
+        }
+    }
+    return 0;
+}

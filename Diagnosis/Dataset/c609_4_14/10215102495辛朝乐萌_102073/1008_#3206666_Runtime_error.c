@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void solveint(int n)
+{
+    int c=sizeof (n);
+    unsigned char *p=(unsigned char *)&n;
+    while (c--){
+        printf("%02x",*p++);
+    }
+}
+
+void solvedouble(double d)
+{
+    int c=sizeof (d);
+    unsigned char *p=(unsigned char *)&d;
+    while (c--){
+        printf("%02x",*p++);
+    }
+}
+
+int main()
+{
+    char s[1000];
+    while (scanf("%s",s)!=EOF){
+        if (strstr(s,'.')==0){
+            solveint(atoi(s));
+        } else{
+            solvedouble(atof(s));
+        }
+        printf("\n");
+    }
+    return 0;
+}

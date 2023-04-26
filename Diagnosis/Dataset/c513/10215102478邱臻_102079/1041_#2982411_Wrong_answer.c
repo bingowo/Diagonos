@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main() {
+	char s[51];
+	int len[51];
+	int i,j,max=0,count;
+	scanf("%s",s);  //输入字符串
+	for(i=0;i<strlen(s);i++){
+		j=i;count=0;
+		while(s[j]!=s[j+1]){
+			count++;j++;
+		}
+		len[i]=count+1;
+		max=max<len[i]?len[i]:max;  //记录最大值 
+	} 
+	printf("%d",max);
+	return 0;
+}
